@@ -21,8 +21,8 @@ function App() {
   }
 
   async function handleChangeStatus(id: number, status: Status) {
-    withTasks((tasks) => tasks.map((t) => (t.id === id ? { ...t, status } : t)))
-    await changeStatus(id, status)
+    const saved = await changeStatus(id, status)
+    withTasks((tasks) => tasks.map((t) => (t.id === id ? saved : t)))
   }
 
   async function handleUpdate(id: number, input: { title: string; description: string }) {
